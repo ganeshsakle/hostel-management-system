@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
 
   def create
     begin
-      room = Room.new(room_params.merge(hostel_id: params[:id]))
+      room = Room.new(room_params.merge(hostel_id: params[:hostel_id]))
       room.save!
       render json: RoomSerializer.new(room), status: :created
     rescue ActiveRecord::ActiveRecordError => e

@@ -1,0 +1,7 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  check_in_date: 2025-01-11 18:11:56
+
+two:
+  check_in_date: 2025-01-11 18:11:56
