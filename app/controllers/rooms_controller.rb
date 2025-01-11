@@ -11,26 +11,26 @@ class RoomsController < ApplicationController
 
   def create
     begin
-      room = Room.new(room_params)
+      room = Room.new(room_params.merge(hostel_id: params[:id]))
       room.save!
-      render json: HostelSerializer.new(room), status: :created
+      render json: RoomSerializer.new(room), status: :created
     rescue ActiveRecord::ActiveRecordError => e
       render json: { error: e }
     end
   end
 
   def destroy
-    hostel = Hostel.find_by_id(params[:id])
-    return render json: { message: "Hostel not present" }, status: :ok unless hostel.present?
-    hostel.destroy
-    render json: { message: "Hostel deleted successfully" }, status: :ok
+    room = Room.find_by_id(params[:id])
+    return render json: { message: "Room not present" }, status: :ok unless room.present?
+    room.destroy
+    render json: { message: "Room deleted successfully" }, status: :ok
   end
 
   def update
-    hostel = Hostel.find_by_id(params[:id])
-    return render json: { message: "Hostel not present" }, status: :ok unless hostel.present?
-    hostel.update(room_params)
-    render json: HostelSerializer.new(hostel), status: :ok
+    room = Room.find_by_id(params[:id])
+    return render json: { message: "Room not present" }, status: :ok unless room.present?
+    room.update(room_params)
+    render json: RoomSerializer.new(room), status: :ok
   end
 
   private
